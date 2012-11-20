@@ -33,13 +33,13 @@ void MainWindow::on_btnSearch_clicked()
     mLoop.exec();
     QByteArray mData = mReply->readAll();
 
-    qDebug() << mData;
-    qDebug() << "Error: " << mReply->errorString();
 
-    QVariant replyStatus = mReply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-    if (replyStatus == 301)
+    int replyStatus = mReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    qDebug() << "HttpStatusCode: " << replyStatus;
+    if (replyStatus == 302)
     {
-        QString redirectUrl = mReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
+        QString redirectUrl = mReply->rawHeader("Location");
+        qDebug() << redirectUrl;
     }
 
     if (!mData.contains("availTable")){
