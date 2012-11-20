@@ -1,0 +1,18 @@
+#-------------------------------------------------
+#
+# Project created by QtCreator 2012-11-20T13:10:12
+#
+#-------------------------------------------------
+
+QT       += core gui network
+
+TARGET = MKM_Optimizer
+TEMPLATE = app
+
+
+SOURCES += main.cpp\
+        mainwindow.cpp
+
+HEADERS  += mainwindow.h
+
+FORMS    += mainwindow.ui
