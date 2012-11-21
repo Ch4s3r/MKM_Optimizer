@@ -1,21 +1,17 @@
-############################################################
-################## MKMCard Shop Optimizer ##################
-############################################################
+#**MKMCard Shop Optimizer**
 
-#TODO:
+##**TODO:**
 		Alles!
 
-#Structure:
+##Structure:
 		+	Connection Manager
 			-	Card Url Reader
 		+	Card List
 			-	Card Price Collector
 			-	Calculator
 
-#Version:
+##*Version:*
 0.0.2		---
 0.0.1		Release
 
-#@Author: Ch4s3r, Eastwooder
-
-############################################################
+###*@Author: Ch4s3r, Eastwooder*
