@@ -2,8 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QtNetwork>
 #include <windows.h>
+#include "networkmanager.h"
 
 namespace Ui {
 class MainWindow;
@@ -12,7 +12,8 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-    
+    NetworkManager manager;
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();

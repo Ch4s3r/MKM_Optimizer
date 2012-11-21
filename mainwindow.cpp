@@ -23,26 +23,19 @@ MainWindow::~MainWindow()
 void MainWindow::on_btnSearch_clicked()
 {
     QString mRequestURL = "https://www.magickartenmarkt.de/?mainPage=showSearchResult&searchFor=";
-
     mRequestURL.append(ui->txtCardName->text());
+    QByteArray mData = manager.getURL(mRequestURL);
+
+//    QEventLoop mLoop;
+//    QNetworkAccessManager mNetworkManager;
+//    const QNetworkRequest mRequest(mRequestURL);
+//    QNetworkReply *mReply = mNetworkManager.get(mRequest);
+//    connect(mReply,SIGNAL(finished()),&mLoop,SLOT(quit()));
+//    mLoop.exec();
+//    QByteArray mData = mReply->readAll();
 
 
-    QEventLoop mLoop;
-    QNetworkAccessManager mNetworkManager;
-    const QNetworkRequest mRequest(mRequestURL);
-    QNetworkReply *mReply = mNetworkManager.get(mRequest);
-    connect(mReply,SIGNAL(finished()),&mLoop,SLOT(quit()));
-    mLoop.exec();
-    QByteArray mData = mReply->readAll();
 
-
-    int replyStatus = mReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-    qDebug() << "HttpStatusCode: " << replyStatus;
-    if (replyStatus == 302)
-    {
-        QString redirectUrl = mReply->rawHeader("Location");
-        qDebug() << redirectUrl;
-    }
 
     if (!mData.contains("availTable")){
         QStringList mEditionsFound;
