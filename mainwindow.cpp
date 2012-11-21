@@ -26,17 +26,7 @@ void MainWindow::on_btnSearch_clicked()
     mRequestURL.append(ui->txtCardName->text());
     QByteArray mData = manager.getURL(mRequestURL);
 
-//    QEventLoop mLoop;
-//    QNetworkAccessManager mNetworkManager;
-//    const QNetworkRequest mRequest(mRequestURL);
-//    QNetworkReply *mReply = mNetworkManager.get(mRequest);
-//    connect(mReply,SIGNAL(finished()),&mLoop,SLOT(quit()));
-//    mLoop.exec();
-//    QByteArray mData = mReply->readAll();
-
-
-
-
+    //if more editions of one card are available
     if (!mData.contains("availTable")){
         QStringList mEditionsFound;
         int pos = 0;

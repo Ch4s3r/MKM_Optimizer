@@ -12,9 +12,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    networkmanager.cpp
+    networkmanager.cpp \
+    mkmcardparser.cpp
 
 HEADERS  += mainwindow.h \
-    networkmanager.h
+    networkmanager.h \
+    mkmcardparser.h
 
 FORMS    += mainwindow.ui
