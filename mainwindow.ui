@@ -40,7 +40,11 @@
      </widget>
     </item>
     <item row="1" column="0" colspan="4">
-     <widget class="QTableWidget" name="tblWants"/>
+     <widget class="QTableWidget" name="tblWants">
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

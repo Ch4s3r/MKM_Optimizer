@@ -8,11 +8,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->tblWants->setColumnCount(2);
+    ui->tblWants->setColumnCount(3);
     QStringList header;
-    header << "Card Name" << "Edition";
+    header << "Card Name" << "Edition" << "";
     ui->tblWants->setHorizontalHeaderLabels(header);
     ui->tblWants->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tblWants->setColumnWidth(2, 20);
 }
 
 MainWindow::~MainWindow()
@@ -22,27 +23,27 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btnSearch_clicked()
 {
-    QString mRequestURL = "https://www.magickartenmarkt.de/?mainPage=showSearchResult&searchFor=";
-    mRequestURL.append(ui->txtCardName->text());
-    QByteArray mData = manager.getURL(mRequestURL);
 
-    //if more editions of one card are available
-    if (!mData.contains("availTable")){
-        QStringList mEditionsFound;
-        int pos = 0;
-        while(1){
-            QRegExp mRegex("(<a href=\")(.{0,100}\\.prod)(\">)");
-            pos = mRegex.indexIn(mData,pos);
-            if (pos > -1) {
-                 qDebug() << mRegex.cap(2);
-                 mEditionsFound.append(mRegex.cap(2));
-            }else break;
-            pos += mRegex.cap(0).length();
-        }
-        mEditionsFound.removeDuplicates();
-        qDebug() << mEditionsFound;
+    MkmCardParser parser;
+    QStringList cards = parser.getCardURLs(ui->txtCardName->text());
+    foreach(QString card, cards){
+        QTableWidgetItem *item;
+
+        ui->tblWants->insertRow(ui->tblWants->rowCount());
+
+        item = new QTableWidgetItem();
+        item->setText(parser.getCurrentCardName());
+        ui->tblWants->setItem(ui->tblWants->rowCount()-1,0,item);
+
+        item = new QTableWidgetItem();
+        item->setText(card);
+        ui->tblWants->setItem(ui->tblWants->rowCount()-1,1,item);
+
+        item = new QTableWidgetItem();
+        item->setIcon(QIcon(":/images/delete.ico"));
+        ui->tblWants->setItem(ui->tblWants->rowCount()-1,2,item);
+
     }
-
 
 
 

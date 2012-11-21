@@ -15,13 +15,14 @@ QByteArray NetworkManager::getURL(QString url)
 
     replyStatus = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
-    if (replyStatus != 200)
-        qDebug() << "HttpStatusCode: " << replyStatus;
+//    if (replyStatus != 200)
+//        qDebug() << "HttpStatusCode: " << replyStatus;
 
     if (replyStatus == 302)
     {
-        QString redirectUrl = "https://www.magickartenmarkt.de/" + reply->rawHeader("Location");
-        return getURL(redirectUrl);
+        QByteArray redirectUrl = reply->rawHeader("Location") + "<redirected>";
+//        return getURL(redirectUrl);
+        return redirectUrl;
     }
 
     return reply->readAll();

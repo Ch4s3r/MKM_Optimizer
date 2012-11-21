@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <windows.h>
 #include "networkmanager.h"
+#include "mkmcardparser.h"
 
 namespace Ui {
 class MainWindow;

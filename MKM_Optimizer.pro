@@ -20,3 +20,6 @@ HEADERS  += mainwindow.h \
     mkmcardparser.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    resources.qrc
